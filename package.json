@@ -1,0 +1,16 @@
+{
+  "name": "echo-server",
+  "version": "0.0.0",
+  "main": "./dist/src/index.js",
+  "scripts": {
+    "lint": "echo not implemented",
+    "test": "echo not implemented",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "node ./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^14.17.12",
+    "typescript": "^4.3.5"
+  }
+}
