@@ -20,6 +20,22 @@ To use another port
 docker run -p 3335:3335 -e "PORT=3335" echo-server
 ```
 
+## GitHub action workflow
+
+To pull after workflow completes and pushes image
+
+```bash
+docker pull ghcr.io/<GITHUBREPO>/echo-server:latest
+```
+
+Or just run it and it will pull for you
+
+```bash
+docker run -p 3335:3335 -e "PORT=3335" ghcr.io/<GITHUBREPO>/echo-server:latest
+```
+
+See [Working with GitHub Packages Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
+
 ## Initial setup
 
 This project was setup using `tsc init`
