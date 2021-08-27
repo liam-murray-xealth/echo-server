@@ -12,7 +12,7 @@ on:
       - releases/**
 
 env:
-  IMAGE_NAME: echo-server
+  IMAGE_NAME: echoserver
 
 jobs:
   build:

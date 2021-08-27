@@ -2,7 +2,7 @@
 #
 # For testing locally
 #
-IMAGE_NAME=echo-server
+IMAGE_NAME=echoserver
 
 : ${GIT_HASH:=$(git rev-parse --short HEAD)}
 
