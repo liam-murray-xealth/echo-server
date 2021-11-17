@@ -2,10 +2,9 @@
 image:
   file: .gitpod.Dockerfile
 
-# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
-# Only HTTP services are supported right now
 ports:
-  - port: 3334
+  - port: 3333-3334
+    # Do not popup message that port is opened
     onOpen: ignore
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
