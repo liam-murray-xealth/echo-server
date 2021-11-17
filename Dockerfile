@@ -12,10 +12,11 @@ WORKDIR /app
 
 # Dependencies
 COPY package*.json ./
-RUN npm install --only=production
+#RUN npm install --only=production
+RUN npm install 
 
 # Source
 COPY . .
-RUN npm run build
+RUN npm run build && npm prune --production
 
 CMD ["npm", "start"]

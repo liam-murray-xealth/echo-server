@@ -62,3 +62,11 @@ npx tsc --init
 Update `tsconfig.json` (e.g. set output to `.dist`)
 
 Add prettier, gitignore, etc.
+
+## Updating gitpod
+
+View extensions
+
+```bash
+code --list-extensions
+```

@@ -12,7 +12,7 @@ const host = process.env.HOST || '0.0.0.0'
 
 const server = net.createServer()
 
-function truncate(s: string, max: number = 15) {
+function truncate(s: string, max = 15) {
   return s.length > max ? `${s.substring(0, max)}...` : s
 }
 
@@ -46,6 +46,7 @@ function listen() {
 
 server.on('error', e => {
   console.log(`Error: ${e}`)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if ((e as any).code === 'EADDRINUSE') {
     console.log('Retrying...')
     setTimeout(() => {

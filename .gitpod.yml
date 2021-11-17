@@ -1,0 +1,28 @@
+# image: gitpod/workspace-full
+image:
+  file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3333-3334
+    onOpen: ignore
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - init: |
+      npm ci
+      npm run build
+    command: |
+      npm run start
+
+vscode:
+  extensions:
+    - arcticicestudio.nord-visual-studio-code
+    - dbaeumer.vscode-eslint
+    - eamodio.gitlens
+    - esbenp.prettier-vscode
+    - file-icons.file-icons
+    - firsttris.vscode-jest-runner
+    - ms-azuretools.vscode-docker
+    - redhat.vscode-yaml
+    - vscode-icons-team.vscode-icons
