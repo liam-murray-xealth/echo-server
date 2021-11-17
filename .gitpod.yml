@@ -24,8 +24,6 @@ vscode:
     - dbaeumer.vscode-eslint
     - eamodio.gitlens
     - esbenp.prettier-vscode
-    - file-icons.file-icons
     - firsttris.vscode-jest-runner
     - ms-azuretools.vscode-docker
-    - redhat.vscode-yaml
     - vscode-icons-team.vscode-icons
