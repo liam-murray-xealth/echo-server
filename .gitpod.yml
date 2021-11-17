@@ -14,6 +14,7 @@ tasks:
       npm run build
     command: |
       npm run start
+  - command: telnet 127.0.0.1 3333
 
 vscode:
   extensions:
