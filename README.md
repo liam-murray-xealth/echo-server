@@ -70,3 +70,9 @@ View extensions
 ```bash
 code --list-extensions
 ```
+
+Test dockerfile
+
+```bash
+docker build . -f .gitpod.Dockerfile
+```
