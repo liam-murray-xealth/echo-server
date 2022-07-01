@@ -73,6 +73,7 @@ jobs:
           # Always push image with github hash
           echo "Pushing $IMAGE_ID:$GITHUB_SHA_SHORT"
           docker push $IMAGE_ID:$GITHUB_SHA_SHORT
+          docker push $IMAGE_ID:$GITHUB_SHA
 
           # Tag with version and push
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
