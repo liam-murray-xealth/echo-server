@@ -1,0 +1,4 @@
+# Not currently used (example config)
+listeners:
+  - port: 3333
+    name: foo
