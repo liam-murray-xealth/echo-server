@@ -15,6 +15,6 @@ app.get('/', (req, res) => {
 const server = app.listen({ host, port }, () => {
   const addr = server.address() as net.AddressInfo
   if (addr) {
-    console.log(`Health service listening on http://${addr.address}:${addr.port}`)
+    console.log(`Health service listening on: http://${addr.address}:${addr.port}`)
   }
 })
