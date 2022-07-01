@@ -62,7 +62,8 @@ jobs:
           docker build . --file Dockerfile \
               --build-arg TAG=$GITHUB_SHA_SHORT \
               --label "runnumber=${GITHUB_RUN_ID}" \
-              --tag $IMAGE_ID:$GITHUB_SHA_SHORT
+              --tag $IMAGE_ID:$GITHUB_SHA_SHORT \
+              --tag $IMAGE_ID:$GITHUB_SHA
 
           # if [[ "${{ github.ref }}" == "refs/heads/"main ]]
 
