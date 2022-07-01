@@ -4,5 +4,8 @@ kind: Kustomization
 resources:
 - ../../base
  
-patches:
-- service-account.yaml
+# Uncomment to use ImagePullSecret
+# Otherwise configure node to pull from private registry
+#
+# patches:
+# - service-account.yaml
