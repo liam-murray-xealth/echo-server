@@ -3,11 +3,10 @@ kind: Kustomization
 commonLabels:
   app: echoserver
 resources:
-  - service-account.yaml
   - deployment.yaml
   - service.yaml
 
-# For future (config not currently used)
+# Config not used (example)
 configMapGenerator:
   - name: echoserver-config
     files:
