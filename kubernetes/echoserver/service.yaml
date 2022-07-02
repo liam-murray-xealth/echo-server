@@ -6,7 +6,6 @@ metadata:
 spec:
   selector:
     app: echoserver
-  # externalTrafficPolicy: Local
   ports:
    -  protocol: TCP
       port: 5000
