@@ -89,14 +89,18 @@ jobs:
           echo "Pushing $IMAGE_ID:$GITHUB_SHA_SHORT"
           docker push $IMAGE_ID:$GITHUB_SHA_SHORT
 
+      # For PR 
+      #   * We want to tag the commit SHA i.e. refs/heads/<BRANCH> 
+      #   * This is found in ${{ github.event.pull_request.head.sha }} 
+      #   * github.ref (GITHUB_REF) is "refs/pull/1/head" (automatic merge commit)
+      #   * GITHUB_REF is what is actually built
+      #
       - name: Push additional image tags
         run: |
-          # For PR we want to tag the commit SHA for refs/heads/<BRANCH> (GITHUB_REF)
-          # This commit SHA will be ${{ github.event.pull_request.head.sha }} 
-          #
+          
           echo "Adding tags for event ${{ github.event_name }}..."
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            # github ref would be "refs/pull/1/head"
+            
             PR_TAG="pr-${{ github.event.pull_request.head.sha }}"
             echo "Pushing $IMAGE_ID:$PR_TAG"
             docker tag $IMAGE_ID:$GITHUB_SHA_SHORT $IMAGE_ID:$PR_TAG
@@ -107,7 +111,6 @@ jobs:
           # For tag commit (matching v prefix) add tag "version"
           #
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            # main => "latest"
             VERSION=latest
           elif [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
             # v1.2.3 => "1.2.3"
