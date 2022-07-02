@@ -95,7 +95,7 @@ jobs:
           # This commit SHA will be ${{ github.event.pull_request.head.sha }} 
           #
           echo "Adding tags for event ${{ github.event_name }}..."
-          if [[ ${{ github.event_name == 'pull_request'}} ]]; then
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             # github ref would be "refs/pull/1/head"
             PR_TAG="pr-${{ github.event.pull_request.head.sha }}"
             echo "Pushing $IMAGE_ID:$PR_TAG"
