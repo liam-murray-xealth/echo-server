@@ -1,9 +1,5 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.fontLigatures": true,
-  "editor.fontFamily": "Fira Code",
-  "editor.lineHeight": 1.3,
-  "editor.fontSize": 12
+  "editor.formatOnSave": true
 }
