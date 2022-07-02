@@ -21,7 +21,7 @@ spec:
         app: echoserver
       annotations:
         k9scli.io/auto-port-forwards: echoserver::3330:3335
-    spec:
+    spec: 
       serviceAccountName: echoserver
       imagePullSecrets: []
       containers:
