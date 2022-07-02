@@ -1,5 +1,4 @@
 # Example config (not used)
-#
 listeners:
   - port: 3333
     name: foo

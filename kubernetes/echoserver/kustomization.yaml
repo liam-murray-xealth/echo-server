@@ -6,7 +6,7 @@ resources:
   - deployment.yaml
   - service.yaml
 
-# Config not used (example)
+# Example config (not used)
 configMapGenerator:
   - name: echoserver-config
     files:
