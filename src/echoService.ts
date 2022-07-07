@@ -33,7 +33,7 @@ server.on('connection', (socket: net.Socket) => {
     console.log(`Data: ${clean(truncate(data.toString()))}`)
   })
 
-  socket.write('Echo server\r\n')
+  socket.write('Welcome to echo server!\r\n')
   socket.pipe(socket)
 })
 
