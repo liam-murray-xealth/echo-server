@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: echoserver
+  annotations:
+    github.com/project-slug: liam-murray-xealth/echoserver
+spec:
+  type: other
+  lifecycle: unknown
+  owner: liam.murray@xealth.io
