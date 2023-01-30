@@ -26,12 +26,19 @@ jobs:
       packages: write
       contents: read
     steps:
-      # Push: checkout pushed commit
-      # Pull: checkout auto merge commit (git ls-remote shows "refs/pull/1/merge")
-      # GITHUB_SHA is the commint that triggered the workflow
-      # For a PR the workflow is triggered by GITHUB_SHA
-      # GITHUB_SHA is used to checkout
+      # GITHUB_SHA is the commit that triggered the workflow 
+      # This always checks out the GITHUB_SHA
       #
+      # For PR GITHUB_SHA is the auto-merge commit (not PR branch commit!)
+      # 
+      # You can see this branch using the command
+      #
+      #   git ls-remote
+      #
+      # It shows something like
+      #
+      #   refs/pull/1/merge
+      #  
       - name: Checkout code
         uses: actions/checkout@v3
 

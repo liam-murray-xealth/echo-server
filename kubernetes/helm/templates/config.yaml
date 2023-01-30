@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urls-config
+  labels:
+    app: url-shortener
+data:
+  app.config.yaml: |
+    port: 3400
+    mongo:
+      # Probably overriden in env vars
+      connectString: mongodb://d-mongo/urls
+
+  urls.config.yaml: |
+    cognito:
+      poolId: 1
+      region: us-west-2
+    # 36 (lowercase only) or 62 (upper+lower)
+    encodeBase: 36
+    # counter or unique hash
+    type: hash
+
+

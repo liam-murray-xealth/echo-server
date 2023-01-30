@@ -1,0 +1,14 @@
+
+replicaCount: 1
+version: latest
+serverPort: 3333
+
+mongo:
+  connectString: mongodb://urls-mongodb/urls
+  # Should have keys username and password
+  secretName: mongo-urls
+
+urlShortener:
+  imagePullSecret: docker-nod15c
+  image:  docker.pkg.github.com/liammurray/nod15c/url-shortener
+
