@@ -22,25 +22,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
+      # TODO review
       packages: write
       contents: read
-    strategy:
-      matrix:
-        node-version: [14]
     steps:
-      # Push: checkout pushed commit
-      # Pull: checkout auto merge commit (git ls-remote shows "refs/pull/1/merge")
-      # GITHUB_SHA is the commint that triggered the workflow
-      # For a PR the workflow is triggered by GITHUB_SHA
-      # GITHUB_SHA is used to checkout
+      # GITHUB_SHA is the commit that triggered the workflow 
+      # This always checks out the GITHUB_SHA
       #
+      # For PR GITHUB_SHA is the auto-merge commit (not PR branch commit!)
+      # 
+      # You can see this branch using the command
+      #
+      #   git ls-remote
+      #
+      # It shows something like
+      #
+      #   refs/pull/1/merge
+      #  
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
 
       - name: Install dependencies and build
         run: |
@@ -58,14 +63,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-   
-      - name: Set env vars in GITHUB_ENV
-        run: |
-          echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
 
       - name: Set environment variables
         run: |

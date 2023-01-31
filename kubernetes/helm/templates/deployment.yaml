@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener
+  labels:
+    app: url-shortener
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: url-shortener
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: url-shortener
+    spec:
+      containers:
+      - image: {{ .Values.urlShortener.image }}:{{ .Values.version }}
+        imagePullPolicy: Always
+        name: url-shortener
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/src/app/assets/config
+        env:
+        # ENV vars that override config
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.mongo.secretName }}
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.mongo.secretName }}
+              key: password
+        - name: MONGO_CONNECTION_STRING
+          value: {{ .Values.mongo.connectString }}
+        - name: SERVER_PORT
+          value: "{{ .Values.serverPort }}"
+        - name: LOG_LEVEL
+          value: debug
+        ports:
+        - containerPort: {{ .Values.serverPort }}
+          protocol: TCP
+        # Is service itself running and listening?
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.serverPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        # Is it expected to work? (Mongo look good, etc.)
+        readinessProbe:
+          httpGet:
+            path: /health/status
+            port: {{ .Values.serverPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+
+      imagePullSecrets:
+        - name: {{ .Values.urlShortener.imagePullSecret }}
+
+      volumes:
+        - name: config-volume
+          configMap:
+            name: urls-config
